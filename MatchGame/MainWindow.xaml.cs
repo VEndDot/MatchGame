@@ -76,7 +76,7 @@ public partial class MainWindow : Window
             animalEmoji.RemoveAt(index);
         }
         timer.Start();
-        tenthsOfSecondsElapsed = 10;
+        tenthsOfSecondsElapsed = 100;
         matchesFound = 0;
     }
 
