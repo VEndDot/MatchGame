@@ -41,5 +41,8 @@
         <TextBlock Grid.Column="1" HorizontalAlignment="Center" Grid.Row="3" Text="?" VerticalAlignment="Center" RenderTransformOrigin="-0.143,0.344" FontSize="36" MouseDown="TextBlock_MouseDown"/>
         <TextBlock Grid.Column="2" HorizontalAlignment="Center" Grid.Row="3" Text="?" VerticalAlignment="Center" RenderTransformOrigin="-0.143,0.344" FontSize="36" MouseDown="TextBlock_MouseDown"/>
         <TextBlock Grid.Column="4" HorizontalAlignment="Center" Grid.Row="3" Text="?" VerticalAlignment="Center" RenderTransformOrigin="-0.143,0.344" FontSize="36" MouseDown="TextBlock_MouseDown"/>
+
+        <TextBlock x:Name="TimeTextBlock" Grid.ColumnSpan="4" HorizontalAlignment="Center" Grid.Row="4" Text="Elapsed time" VerticalAlignment="Center" RenderTransformOrigin="-0.143,0.344" FontSize="36" MouseDown="TimeTextBlock_MouseDown"/>
+
     </Grid>
 </Window>
