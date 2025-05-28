@@ -69,19 +69,24 @@ public partial class MainWindow : Window
             {
                 continue;
             }
+
             textBlock.Visibility = Visibility.Visible;
             int index = rand.Next(animalEmoji.Count);
             textBlock.Text = animalEmoji[index];
             animalEmoji.RemoveAt(index);
         }
         timer.Start();
-        tenthsOfSecondsElapsed = 100;
+        tenthsOfSecondsElapsed = 10;
         matchesFound = 0;
     }
 
     private void TextBlock_MouseDown(object sender, MouseButtonEventArgs e)
     {
         TextBlock textBlock = sender as TextBlock;
+        if (tenthsOfSecondsElapsed == 0) {
+            return;
+        }
+            
         if (findingMatch == false)
         {
             textBlock.Visibility = Visibility.Hidden;
@@ -105,6 +110,7 @@ public partial class MainWindow : Window
 
     private void TimeTextBlock_MouseDown(object sender, MouseButtonEventArgs e)
     {
+
         if (matchesFound == 8 || tenthsOfSecondsElapsed == 0)
         {
             SetUpGame();
