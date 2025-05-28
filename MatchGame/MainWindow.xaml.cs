@@ -16,7 +16,6 @@ namespace MatchGame;
 /// </summary>
 public partial class MainWindow : Window
 {
-    private int a = 12;
     public MainWindow()
     {
         InitializeComponent();
