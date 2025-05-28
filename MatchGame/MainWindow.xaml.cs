@@ -19,7 +19,7 @@ public partial class MainWindow : Window
     DispatcherTimer timer = new DispatcherTimer();
     int tenthsOfSecondsElapsed;
     int matchesFound;
-
+    List<float> gameResults = new List<float>();
     // последний нажатый блок текста
     TextBlock lastTextBlockClicked;
     // флаг отслеживающий совпадения 
@@ -35,12 +35,14 @@ public partial class MainWindow : Window
 
     private void Timer_Tick(object? sender, EventArgs e)
     {
-        tenthsOfSecondsElapsed++;
+        tenthsOfSecondsElapsed--;
         TimeTextBlock.Text = (tenthsOfSecondsElapsed / 10F).ToString("0.0s");
-        if (matchesFound == 8)
+        if (matchesFound == 8 || tenthsOfSecondsElapsed == 0)
         {
             timer.Stop();
-            TimeTextBlock.Text = TimeTextBlock.Text + " - Play again?";
+            gameResults.Add(tenthsOfSecondsElapsed);
+
+            TimeTextBlock.Text = TimeTextBlock.Text + " - Play again? \nmax time: " + gameResults.Max()/10;
         }
     }
 
@@ -73,7 +75,7 @@ public partial class MainWindow : Window
             animalEmoji.RemoveAt(index);
         }
         timer.Start();
-        tenthsOfSecondsElapsed = 0;
+        tenthsOfSecondsElapsed = 100;
         matchesFound = 0;
     }
 
@@ -103,7 +105,7 @@ public partial class MainWindow : Window
 
     private void TimeTextBlock_MouseDown(object sender, MouseButtonEventArgs e)
     {
-        if (matchesFound == 8)
+        if (matchesFound == 8 || tenthsOfSecondsElapsed == 0)
         {
             SetUpGame();
         }
