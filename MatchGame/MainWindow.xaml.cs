@@ -16,12 +16,16 @@ namespace MatchGame;
 /// </summary>
 public partial class MainWindow : Window
 {
+    // последний нажатый блок текста
+    TextBlock lastTextBlockClicked;
+
+    // флаг отслеживающий совпадения 
+    bool findingMatch;
+
     public MainWindow()
     {
         InitializeComponent();
-
         SetUpGame();
-        
     }
 
     private void SetUpGame()
@@ -46,6 +50,29 @@ public partial class MainWindow : Window
             textBlock.Text = animalEmoji[index];
             animalEmoji.RemoveAt(index);
 
+        }
+    }
+
+    private void TextBlock_MouseDown(object sender, MouseButtonEventArgs e)
+    {
+        TextBlock textBlock = sender as TextBlock;
+        if (findingMatch == false)
+        {
+            textBlock.Visibility = Visibility.Hidden;
+            lastTextBlockClicked = textBlock;
+            findingMatch = true;
+        }
+        else if (textBlock.Text == lastTextBlockClicked.Text)
+        {
+            lastTextBlockClicked.Visibility = Visibility.Hidden;
+            // let all the couples disappear
+            textBlock.Visibility = Visibility.Hidden;
+            findingMatch = false;
+        }
+        else
+        {
+            lastTextBlockClicked.Visibility = Visibility.Visible;
+            findingMatch = false;
         }
     }
 }
